@@ -3,18 +3,19 @@ const url = 'https://www.bitstamp.net/api/v2/ticker/btcusd/'
 const body = document.querySelector('body')
 const fetchButton = document.querySelector('.fetchButton')
 
+const highBox = document.querySelector('.high')
+const lowBox = document.querySelector('.low')
+const askBox = document.querySelector('.ask')
+const openBox = document.querySelector('.open')
+
 const getData = () => {
   fetch(url)
     .then(data => { return data.json() })
     .then((res) => {
-      if (res) {
-        console.log(JSON.stringify(res))
-      } else {
-        console.log('no res')
-      }
-      const infoP = document.createElement('p')
-      infoP.textContent = res.high
-      body.appendChild(infoP)
+      highBox.textContent = res.high
+      lowBox.textContent = res.low
+      askBox.textContent = res.ask
+      openBox.textContent = res.open
     })
 }
 
